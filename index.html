@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maaf ya</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      overflow: hidden;
+    }.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  animation: fadeIn 0.8s ease;
+}
+
+h1 {
+  font-weight: 600;
+  color: #333;
+}
+
+p {
+  color: #555;
+  max-width: 300px;
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 10px 22px;
+  border-radius: 25px;
+  border: none;
+  background: #4a90e2;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background: #357abd;
+}
+
+.doll {
+  font-size: 90px;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);} 
+  to { opacity: 1; transform: translateY(0);} 
+}
+
+/* floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 16px;
+  opacity: 0.6;
+  animation: rise 6s linear infinite;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+  </style>
+</head>
+<body><!-- floating elements --><div id="hearts"></div><div class="container" id="page1">
+  <div class="doll">🧸</div>
+  <h1>Hai...</h1>
+  <p>Aku cuma mau ngomong sebentar</p>
+  <button class="btn" onclick="nextPage(2)">Lanjut</button>
+</div><div class="container" id="page2" style="display:none;">
+  <div class="doll">🙂</div>
+  <h1>Aku sadar</h1>
+  <p>Banyak hal yang salah di diriku sekarang banyak buat kamu sakit</p>
+  <button class="btn" onclick="nextPage(3)">Lanjut</button>
+</div><div class="container" id="page3" style="display:none;">
+  <div class="doll">🥺</div>
+  <h1>Maaf ya</h1>
+  <p>Aku tidak bermaksud bikin kamu kecewa</p>
+  <button class="btn" onclick="nextPage(4)">Lanjut</button>
+</div><div class="container" id="page4" style="display:none;">
+  <div class="doll">🐻</div>
+  <h1>Aku belajar</h1>
+  <p>Aku ingin memperbaiki sikapku ke depan</p>
+  <button class="btn" onclick="nextPage(5)">Lanjut</button>
+</div><div class="container" id="page5" style="display:none;">
+  <div class="doll">✨</div>
+  <h1>Maafin akuu yaaa sayangg?</h1>
+  <p>Aku tetap sayangg kamu, apapun jawabannya</p>
+  <button class="btn" onclick="alert('Makasih sayangg loveee youuuu')">Iya</button>
+  <button class="btn" onclick="alert('Aku ngerti, aku selalu nunggu kamuu')">Belum</button>
+</div><script>
+function nextPage(page) {
+  for (let i = 1; i <= 5; i++) {
+    document.getElementById('page' + i).style.display = 'none';
+  }
+  document.getElementById('page' + page).style.display = 'flex';
+}
+
+// generate floating hearts
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML = '❤';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = (10 + Math.random() * 20) + 'px';
+  heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+  document.getElementById('hearts').appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}
+
+setInterval(createHeart, 400);
+</script></body>
+</html>
